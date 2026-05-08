@@ -71,39 +71,13 @@ source install/setup.bash
 ros2 launch crazyflie launch.py backend:=cflib gui:=false mocap:=false teleop:=false rviz:=false
 ```
 
-### 4.3 启动编队控制
-
-```bash
-source /opt/ros/jazzy/setup.bash
-source install/setup.bash
-ros2 launch formation_reconfiguration formation_reconfiguration.launch.py
-```
-
-## 5. 实验命令
-
-```bash
-# 起飞悬浮 1m
-ros2 topic pub --once /all/formation_takeoff std_msgs/msg/Empty "{}"
-
-# 降落
-ros2 topic pub --once /all/formation_land std_msgs/msg/Empty "{}"
-
-# 向 x 轴移动 1m
-ros2 topic pub --once /all/formation_start std_msgs/msg/Int32 "{data: 1}"
-
-# 对向换位
-ros2 topic pub --once /all/formation_start std_msgs/msg/Int32 "{data: 2}"
-
-# 查看历史数据曲线
-ros2 run formation_reconfiguration formation_plot_history
-```
 
 ## 6. 常见坑
 
 - **不要写死 Python 虚拟环境路径**：每个人的机器路径不同，用相对/可配置的方式。
 - **真实动捕链路需要 `vrpn_client_ros`**，不做动捕时加 `mocap:=false`。
 - **`formation_plot_history` 是交互式绘图入口**，无人值守出图需改成无头保存模式。
-- **启动顺序敏感**：必须先拉 4 个 SITL 机器人 → 再启 crazyflie launch → 再启编队节点。
+- **启动顺序敏感**：必须先拉  SITL 无人机 → 再启 crazyflie launch → 再启编队节点。
 - **不使用 C++ 控制后端**，全链路控制在 Python / `cflib` 侧。
 
 ## 7. 技术细节
