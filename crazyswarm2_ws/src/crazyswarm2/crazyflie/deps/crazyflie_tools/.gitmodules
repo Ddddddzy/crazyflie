@@ -1,0 +1,3 @@
+[submodule "crazyflie_cpp"]
+	path = crazyflie_cpp
+	url = https://github.com/llanesc/crazyflie_cpp.git

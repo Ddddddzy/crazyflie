@@ -1,0 +1,9 @@
+cflib
+Jinja2
+matplotlib
+numpy
+osqp
+PyYAML
+scipy
+transforms3d
+typeguard
